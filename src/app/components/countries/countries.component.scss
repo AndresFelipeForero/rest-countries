@@ -156,8 +156,8 @@ input[type="text"] {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      // border: 1px solid black;
       h2 {
+        color: var(--VeryDarkBlueDarkModeBackground);
         font-size: 1.2rem;
       }
 
@@ -167,6 +167,7 @@ input[type="text"] {
         gap: 4px;
 
         h3 {
+          color: var(--DarkBlueDarkModeElements);
           font-size: 14px;
           font-weight: 600;
 
@@ -180,3 +181,4 @@ input[type="text"] {
     }
   }
 }
+

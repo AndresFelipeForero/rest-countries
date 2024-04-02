@@ -1,16 +1,22 @@
 <div class="container">
-    <button>
-        <img src="" alt="">
+
+    <button (click)="onCLickBack()" class="btn__back">
+        <img src="../../../assets/images/icons8-flecha-izquierda-larga-50.png" alt="Back">
         <span>Back</span>
     </button>
+
+    <!-- flag -->
     <div class="flag-container">
         <img [src]="showCountry.flags.svg" [alt]="showCountry.flags.alt">
     </div>
 
+    <!-- info -->
     <div class="info-container">
-        <h1 class="name">{{showCountry.name['common']}}</h1>
-
+        
         <div class="info-section1">
+
+            <h1 class="name">{{showCountry.name['common']}}</h1>
+
             <h2>Native Name:
                 <span *ngFor="let nativeName of showCountry.name['nativeName']; index as i">{{nativeName.common}}<small
                         *ngIf="i < showCountry.name['nativeName'].length - 1">, </small>
@@ -31,22 +37,28 @@
                 </span>
             </h2>
 
-            <h2>Languages: 
-                <span
-                *ngFor="let language of showCountry.languages; index as i">{{language}}<small *ngIf="i < showCountry.languages.length - 1">, </small>
-            </span>
-
-
+            <h2>Languages:
+                <span *ngFor="let language of showCountry.languages; index as i">{{language}}<small
+                        *ngIf="i < showCountry.languages.length - 1">, </small>
+                </span>
             </h2>
+
         </div>
 
         <div class="borders-container">
             <h2>Border Countries:</h2>
-            <div class="borders__buttons">
-                @for (border of borders; track $index) {
-                    <button class="btn__border">{{border}}</button>
-                }
-            </div>
+
+            @if (borders.length > 0) {
+
+                <div class="borders__buttons">
+                    @for (border of borders; track $index) {
+                        <button [routerLink]="['/countries', border.code]"  class="btn__border">{{border.name}}</button>
+                    }
+                </div>
+
+            }@else {
+                <small>Matches not found</small>
+            }
         </div>
     </div>
 </div>
