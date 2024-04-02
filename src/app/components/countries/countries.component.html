@@ -1,0 +1,63 @@
+<div class="container">
+
+    <!-- search -->
+
+    <div class="search-container">
+        <span class="search-icon"></span>
+        <input type="text" placeholder="Search for a country...">
+    </div>
+
+    <!-- select -->
+
+    <div class="select-container">
+        <div class="custom-select" (click)="toggleOptions()">
+            <div class="selected-option">
+                {{ selectedContinent }}
+                <span class="select__arrow"></span>
+            </div>
+
+            @if (showOptions) {
+            <ul class="options" [ngClass]="{'open':showOptions === true}">
+
+                @for (continent of continents; track $index) {
+                <li (click)="selectContinent(continent)">{{ continent }}</li>
+                }
+
+            </ul>
+            }
+        </div>
+    </div>
+
+    <!-- cards -->
+
+    <div class="cards-container">
+        @for (country of showCountries; track $index) {
+        <div class="card" [routerLink]="['/countries', country.cca3]">
+
+            <div class="card__img--container">
+                <img class="card__flag" [src]="country.flags['png']" [alt]="country.flags['alt']">
+            </div>
+
+            
+
+                <div class="card__info">
+                    <h2>{{country.name['common']}}</h2>
+    
+                    <div class="card__info--properties">
+                        <h3>Population:
+                            <span>{{country.population | number}}</span>
+                        </h3>
+                        <h3>Region:
+                            <span>{{country.region}}</span>
+                        </h3>
+                        <h3>Capital:
+                            <span>{{country.capital}}</span>
+                        </h3>
+                    </div>
+    
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

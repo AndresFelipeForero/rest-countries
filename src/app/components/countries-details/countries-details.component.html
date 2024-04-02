@@ -1,0 +1,52 @@
+<div class="container">
+    <button>
+        <img src="" alt="">
+        <span>Back</span>
+    </button>
+    <div class="flag-container">
+        <img [src]="showCountry.flags.svg" [alt]="showCountry.flags.alt">
+    </div>
+
+    <div class="info-container">
+        <h1 class="name">{{showCountry.name['common']}}</h1>
+
+        <div class="info-section1">
+            <h2>Native Name:
+                <span *ngFor="let nativeName of showCountry.name['nativeName']; index as i">{{nativeName.common}}<small
+                        *ngIf="i < showCountry.name['nativeName'].length - 1">, </small>
+                </span>
+            </h2>
+            <h2>Population: <span>{{showCountry.population | number}}</span></h2>
+            <h2>Region: <span>{{showCountry.region}}</span></h2>
+            <h2>Sub Region: <span>{{showCountry.subregion}}</span></h2>
+            <h2>Capital: <span>{{showCountry.capital}}</span></h2>
+        </div>
+
+        <div class="info-section2">
+            <h2>Top Level Domain: <span>{{showCountry.tld}}</span>
+
+            </h2>
+            <h2>Currencies: <span
+                    *ngFor="let currency of showCountry.currencies; index as i">{{currency.name}}<small *ngIf="i < showCountry.currencies.length - 1">, </small>
+                </span>
+            </h2>
+
+            <h2>Languages: 
+                <span
+                *ngFor="let language of showCountry.languages; index as i">{{language}}<small *ngIf="i < showCountry.languages.length - 1">, </small>
+            </span>
+
+
+            </h2>
+        </div>
+
+        <div class="borders-container">
+            <h2>Border Countries:</h2>
+            <div class="borders__buttons">
+                @for (border of borders; track $index) {
+                    <button class="btn__border">{{border}}</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
