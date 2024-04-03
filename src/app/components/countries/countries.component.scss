@@ -33,8 +33,12 @@
 input[type="text"] {
   flex-grow: 1;
   outline: none;
-  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   width: 100%;
+  color: var(--VeryDarkBlueLightModeText);
+}
+
+input[type="text"]::placeholder {
+  color: var(--DarkGrayLightModeInput);
 }
 
 .search-icon {
@@ -99,7 +103,7 @@ input[type="text"] {
 }
 
 .options li {
-  padding: 8px;
+  padding: 4px 8px;
   padding-left: 24px;
   font-size: 12px;
   font-weight: 600;

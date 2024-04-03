@@ -4,7 +4,7 @@
 
     <div class="search-container">
         <span class="search-icon"></span>
-        <input type="text" placeholder="Search for a country...">
+        <input (keyup)="countriesFilter()" type="text" placeholder="Search for a country..." [(ngModel)]="inputSearch">
     </div>
 
     <!-- select -->
@@ -16,15 +16,14 @@
                 <span class="select__arrow"></span>
             </div>
 
-            @if (showOptions) {
-            <ul class="options" [ngClass]="{'open':showOptions === true}">
+            <ul class="options" [ngClass]="{'open':showOptions}">
 
                 @for (continent of continents; track $index) {
-                <li (click)="selectContinent(continent)">{{ continent }}</li>
+                <li [ngClass]="{'liopen': showOptions}" (click)="selectContinent(continent)" >{{ continent }}</li>
                 }
+                
 
             </ul>
-            }
         </div>
     </div>
 
