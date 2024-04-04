@@ -22,7 +22,6 @@
                 <li [ngClass]="{'liopen': showOptions}" (click)="selectContinent(continent)" >{{ continent }}</li>
                 }
                 
-
             </ul>
         </div>
     </div>
@@ -31,31 +30,38 @@
 
     <div class="cards-container">
         @for (country of showCountries; track $index) {
-        <div class="card" [routerLink]="['/countries', country.cca3]">
-
-            <div class="card__img--container">
-                <img class="card__flag" [src]="country.flags['png']" [alt]="country.flags['alt']">
-            </div>
-
-            
-
-                <div class="card__info">
-                    <h2>{{country.name['common']}}</h2>
+        @defer (on viewport) {
+            <div class="card" [routerLink]="['/countries', country.cca3]">
     
-                    <div class="card__info--properties">
-                        <h3>Population:
-                            <span>{{country.population | number}}</span>
-                        </h3>
-                        <h3>Region:
-                            <span>{{country.region}}</span>
-                        </h3>
-                        <h3>Capital:
-                            <span>{{country.capital}}</span>
-                        </h3>
-                    </div>
-    
+                <div class="card__img--container">
+                    <img class="card__flag" [src]="country.flags['png']" [alt]="country.flags['alt']">
                 </div>
-            </div>
+    
+                
+    
+                    <div class="card__info">
+                        <h2>{{country.name['common']}}</h2>
+        
+                        <div class="card__info--properties">
+                            <h3>Population:
+                                <span>{{country.population | number}}</span>
+                            </h3>
+                            <h3>Region:
+                                <span>{{country.region}}</span>
+                            </h3>
+                            <h3>Capital:
+                                <span>{{country.capital}}</span>
+                            </h3>
+                        </div>
+        
+                    </div>
+                </div>
+          }
+          @placeholder {
+            <span>Cargando...</span>
+          }
+
+
         }
     </div>
 

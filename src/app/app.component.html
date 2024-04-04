@@ -1,6 +1,10 @@
 <main class="container">
+    @if (isLoading$ | async) {
+        <app-spinner></app-spinner>
+    }
 <header>
     <app-nav></app-nav>
 </header>
     <router-outlet />
+
 </main>

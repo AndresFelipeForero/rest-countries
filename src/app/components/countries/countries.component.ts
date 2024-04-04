@@ -4,6 +4,7 @@ import { Country } from '../../models/country.model';
 import { DecimalPipe, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'app-countries',
@@ -13,10 +14,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './countries.component.scss',
 })
 export class CountriesComponent {
-  fields = 'all?fields=flags,name,capital,region,population,cca3';
   _countriesService = inject(CountriesService);
+  _spinnerService = inject(SpinnerService)
   inputSearch = "";
-
+  fields = 'all?fields=flags,name,capital,region,population,cca3';
   continents: string[] = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
   selectedContinent: string = 'Filter by Region'
   showOptions: boolean = false;
