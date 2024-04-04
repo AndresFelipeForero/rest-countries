@@ -9,14 +9,14 @@
 
     <!-- select -->
 
-    <div class="select-container">
+    <div #customOptions class="select-container">
         <div class="custom-select" (click)="toggleOptions()">
             <div class="selected-option">
                 {{ selectedContinent }}
                 <span class="select__arrow"></span>
             </div>
 
-            <ul class="options" [ngClass]="{'open':showOptions}">
+            <ul class="options" [ngClass]="{'open':showOptions}" >
 
                 @for (continent of continents; track $index) {
                 <li [ngClass]="{'liopen': showOptions}" (click)="selectContinent(continent)" >{{ continent }}</li>

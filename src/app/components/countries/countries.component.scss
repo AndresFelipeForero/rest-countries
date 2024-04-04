@@ -41,12 +41,15 @@ input[type="text"]::placeholder {
   color: var(--DarkGrayLightModeInput);
 }
 
+.search-container:has(input[type="text"]:focus) {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 .search-icon {
   width: 20px;
   height: 20px;
   background-image: url('../../../assets/images/icons8-búsqueda.svg');
   background-size: cover;
-  cursor: pointer;
 }
 
 /* ----------Filter by Region-----------*/
@@ -78,6 +81,8 @@ input[type="text"]::placeholder {
   font-weight: 600;
   background-color: var(--WhiteDarkModeTextLightModeElements);
 
+  
+
   .select__arrow{
     background-image: url('../../../assets/images/icons8-flecha-ampliar-30.png');
     background-repeat: no-repeat;
@@ -100,6 +105,8 @@ input[type="text"]::placeholder {
  padding: 12px 0;
   border-radius: 4px;
   display: none;
+
+  
 }
 
 .options li {
@@ -127,7 +134,7 @@ input[type="text"]::placeholder {
   justify-items: center;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 40px;
-  margin-top: 12px;
+  margin: 12px 0;
   
   
   .card {
@@ -181,6 +188,42 @@ input[type="text"]::placeholder {
           }
 
         }
+      }
+    }
+  }
+}
+
+@media (min-width: 800px){
+
+  .container {
+    padding-top: 48px;
+    gap: 48px;
+
+    .search-container {
+      height: 58px;
+    }
+
+    .selected-option {
+      height: 58px;
+      transition: box-shadow .4s ease;
+
+      &:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .options {
+      margin-top: 14px;
+    }
+    
+    
+    .cards-container{
+      margin-top: 0;
+      margin-bottom: 72px;
+      gap: 72px;
+      
+      .card:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
     }
   }

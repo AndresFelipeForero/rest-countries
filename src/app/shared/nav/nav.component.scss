@@ -40,3 +40,21 @@
     }
 
 }
+
+@media (min-width: 800px){
+
+    .nav {
+        padding: 0 5.55%;
+        .logo {
+            font-size: 1.5rem;
+        }
+
+
+        .theme {
+
+            .theme__text {
+                font-weight: 900;
+            }
+        }
+    }
+}

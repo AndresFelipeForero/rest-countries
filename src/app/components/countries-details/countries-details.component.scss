@@ -27,6 +27,10 @@
         border-radius: 2px;
         margin-bottom: 24px;
         cursor: pointer;
+        
+        &:hover{
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
 
         img {
@@ -37,7 +41,9 @@
     }
 
     .flag-container {
+        align-self: center;
         height: auto;
+        max-width: 570px;
         img {
             height: 100%;
             width: 100%;
@@ -124,6 +130,82 @@
                 font-size: 10px;
                 font-weight: 300;
                 color: var(--DarkGrayLightModeInput);
+
+                &:hover{
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                }
+            }
+
+            
+        }
+    }
+}
+
+@media (min-width: 800px){
+    .container {
+        display: grid;
+        grid-template: 
+        'btn__back btn__back' 
+        'flag      info'      / 
+        1fr        1fr;
+        padding: 0 5.55% 5.55% 5.55%;
+        column-gap: 8.33%;
+        row-gap: 80px;
+       
+
+        .btn__back {
+            grid-area: btn__back;
+            margin-top: 80px;
+            margin-bottom: 0;
+        }
+
+
+        .flag-container{
+            grid-area: flag;
+            // width: 562px;
+            place-self: start;
+            img {
+                object-fit: contain;
+            }
+        }
+
+        .info-container {
+            grid-area: info;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            .info-section1{
+                justify-content: center;
+
+                h1 {
+                    font-size: 1.8rem;
+                    margin-bottom: 14.8px;
+                }
+            }
+            
+            .info-section2{
+                justify-content: center;
+            }
+
+            .borders-container{
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                h2 {
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1100px) {
+    
+    .container {
+        .info-container{
+            
+            .borders-container{
+                flex-wrap: nowrap;
             }
         }
     }
