@@ -15,7 +15,7 @@
     justify-content: space-between;
     padding: 0 4.15%;
     align-items: center;
-    background-color: var(--VeryLightGrayLightModeBackground);
+    background-color: var(--WhiteDarkModeTextLightModeElements);
 
     .logo {
         font-size: .9rem;
@@ -25,12 +25,19 @@
     .theme {
         display: flex;
         gap: 8px;
+        cursor: pointer;
 
 
         .icon__img {
             height: 1rem;
             width: 1rem;
         }
+
+        .icon__img--dark {
+            height: 1rem;
+            width: 1rem;
+        }
+
 
         .theme__text {
             font-size: .8rem;

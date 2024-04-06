@@ -3,7 +3,7 @@
     <!-- search -->
 
     <div class="search-container">
-        <span class="search-icon"></span>
+        <span class="search-icon" [ngClass]="{'dark-theme': darkTheme$ | async}"></span>
         <input (keyup)="countriesFilter()" type="text" placeholder="Search for a country..." [(ngModel)]="inputSearch">
     </div>
 
@@ -13,7 +13,7 @@
         <div class="custom-select" (click)="toggleOptions()">
             <div class="selected-option">
                 {{ selectedContinent }}
-                <span class="select__arrow"></span>
+                <span [ngClass]="{'dark-theme': darkTheme$ | async}" class="select__arrow"></span>
             </div>
 
             <ul class="options" [ngClass]="{'open':showOptions}" >

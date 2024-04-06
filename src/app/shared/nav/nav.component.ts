@@ -1,15 +1,21 @@
-import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [NgClass],
+  imports: [],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss'
 })
 export class NavComponent {
 
-  
+  _themeService = inject(ThemeService)
+  darkTheme = false
 
+  onClickTheme(){
+    this.darkTheme = !this.darkTheme
+    this._themeService.themeToggle(this.darkTheme)
+  }
 }

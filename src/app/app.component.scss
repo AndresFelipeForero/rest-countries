@@ -2,3 +2,21 @@
     min-height: 100vh;
     background-color: var(--VeryLightGrayLightModeBackground);
 }
+
+.variables {
+    --DarkBlueDarkModeElements: hsl(209, 23%, 22%);
+    --VeryDarkBlueDarkModeBackground: hsl(207, 26%, 17%);
+    --VeryDarkBlueLightModeText: hsl(200, 15%, 8%);
+    --DarkGrayLightModeInput: hsl(0, 0%, 52%);
+    --VeryLightGrayLightModeBackground: hsl(0, 0%, 98%);
+    --WhiteDarkModeTextLightModeElements: hsl(0, 0%, 100%);
+}
+
+.dark-theme {
+    --DarkBlueDarkModeElements: hsl(0, 0%, 98%);
+    --WhiteDarkModeTextLightModeElements: hsl(209, 23%, 22%);
+    --VeryLightGrayLightModeBackground: hsl(207, 26%, 17%);
+    --VeryDarkBlueLightModeText: hsl(0, 0%, 90%);
+    --VeryDarkBlueDarkModeBackground: hsl(0, 0%, 90%);
+    --DarkGrayLightModeInput: hsl(0, 0%, 90%);
+}

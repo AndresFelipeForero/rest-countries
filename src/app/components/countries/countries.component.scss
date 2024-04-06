@@ -35,6 +35,7 @@ input[type="text"] {
   outline: none;
   width: 100%;
   color: var(--VeryDarkBlueLightModeText);
+  background-color: var(--WhiteDarkModeTextLightModeElements);
 }
 
 input[type="text"]::placeholder {
@@ -50,6 +51,10 @@ input[type="text"]::placeholder {
   height: 20px;
   background-image: url('../../../assets/images/icons8-búsqueda.svg');
   background-size: cover;
+
+  &.dark-theme {
+    background-image: url('../../../assets/images/icons8-búsqueda-white.svg');
+  }
 }
 
 /* ----------Filter by Region-----------*/
@@ -67,6 +72,7 @@ input[type="text"]::placeholder {
   display: inline-block;
   cursor: pointer;
   outline: none;
+  color: var(--VeryDarkBlueDarkModeBackground);
 }
 
 .selected-option {
@@ -81,14 +87,16 @@ input[type="text"]::placeholder {
   font-weight: 600;
   background-color: var(--WhiteDarkModeTextLightModeElements);
 
-  
-
   .select__arrow{
     background-image: url('../../../assets/images/icons8-flecha-ampliar-30.png');
     background-repeat: no-repeat;
     background-size: contain;
     height: 12px;
     width: 12px;
+
+    &.dark-theme{
+      background-image: url('../../../assets/images/icons8-flecha-contraer-white50.png');
+    }
   }
 }
 
@@ -115,10 +123,11 @@ input[type="text"]::placeholder {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  color: var(--VeryDarkBlueDarkModeBackground);
 }
 
 .options li:hover {
-  background-color: #fff5f5;
+  background-color: var(--VeryLightGrayLightModeBackground);
 }
 
 .open {

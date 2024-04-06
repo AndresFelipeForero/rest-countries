@@ -3,6 +3,7 @@ import { CountriesService } from '../../services/countries.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CountryDetailsShow } from '../../models/country.model';
 import { DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-countries-details',
@@ -17,13 +18,12 @@ export class CountriesDetailsComponent {
   _countriesService = inject(CountriesService);
   activateRout = inject(ActivatedRoute);
   showCountry!: CountryDetailsShow;
-  borders:any[] = []
-
-
-
+  borders?:any[];
+  suscriptionCountry$!: Subscription;
+  subscriptionBorder$!:Subscription;
 
   ngOnInit() {
-    this.activateRout.params.subscribe((param) => {
+    this.suscriptionCountry$ = this.activateRout.params.subscribe((param) => {
       this._countriesService
         .getbyCode(`alpha/${param['code']}`)
         .subscribe(([response]) => {
@@ -32,7 +32,6 @@ export class CountriesDetailsComponent {
           this.getBordesNames(this.showCountry.borders)
         });
     });
-    console.log(this.borders)
   }
 
   organizeData(response: CountryDetailsShow) {
@@ -45,11 +44,14 @@ export class CountriesDetailsComponent {
   }
 
   getBordesNames(borders: string[]){
+    if (!borders) {
+      return
+    }
     this.borders = [];
     borders.forEach((border) => {
-      this._countriesService.getbyCode(`alpha/${border}`).subscribe(([response]) => {
+      this.subscriptionBorder$ = this._countriesService.getbyCode(`alpha/${border}`).subscribe(([response]) => {
         
-        this.borders.push({name: response.name['common'], code: response.cca3}) 
+        this.borders?.push({name: response.name['common'], code: response.cca3}) 
         
       })
     })
@@ -57,5 +59,14 @@ export class CountriesDetailsComponent {
 
   onCLickBack(){
     this.route.navigate(['/countries'])
+  }
+
+  ngOnDestroy(){
+    if (this.suscriptionCountry$) {
+      this.suscriptionCountry$.unsubscribe()
+    }
+    if (this.subscriptionBorder$) {
+      this.subscriptionBorder$.unsubscribe()
+    }
   }
 }

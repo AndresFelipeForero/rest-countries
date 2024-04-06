@@ -1,4 +1,4 @@
-<main class="container">
+<main class="container" [ngClass]="{'dark-theme': (darkTheme | async)}">
     @if (isLoading$ | async) {
         <app-spinner></app-spinner>
     }

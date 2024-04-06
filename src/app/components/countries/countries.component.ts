@@ -1,17 +1,17 @@
-import { catchError } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Component, ElementRef, HostListener, ViewChild, inject } from '@angular/core';
 import { CountriesService } from '../../services/countries.service';
 import { Country } from '../../models/country.model';
-import { DecimalPipe, NgClass, NgIf } from '@angular/common';
+import { AsyncPipe, DecimalPipe, NgClass, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SpinnerService } from '../../services/spinner.service';
-import { ChangeDetectorRef } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-countries',
   standalone: true,
-  imports: [NgClass, RouterLink, DecimalPipe, FormsModule, NgIf],
+  imports: [NgClass, RouterLink, DecimalPipe, FormsModule, NgIf, AsyncPipe],
   templateUrl: './countries.component.html',
   styleUrl: './countries.component.scss',
 })
@@ -19,7 +19,7 @@ export class CountriesComponent {
   @ViewChild('customOptions') optionsContinents!: ElementRef;
   _countriesService = inject(CountriesService);
   _spinnerService = inject(SpinnerService)
-  cdref = inject(ChangeDetectorRef);
+  _themeService = inject(ThemeService)
   
   inputSearch = "";
   fields = 'all?fields=flags,name,capital,region,population,cca3';
@@ -27,11 +27,13 @@ export class CountriesComponent {
   selectedContinent: string = 'Filter by Region'
   showOptions: boolean = false;
   countriesArray!: Country[];
-  showCountries!: Country[];
+  showCountries: Country[] = [];
   requestError?: string;
+  darkTheme$: Observable<boolean> = this._themeService.themeDark;
+  suscription$!: Subscription;
   
   ngOnInit() {
-    this._countriesService
+    this.suscription$ = this._countriesService
     .getAll(this.fields)
     .subscribe((response) => {
       this.countriesArray = response
@@ -67,5 +69,9 @@ export class CountriesComponent {
     if (this.selectedContinent === '') {
       this.selectedContinent = 'Filter by Region'
     }
+  }
+
+  ngOnDestroy(){
+    this.suscription$.unsubscribe()
   }
 }
