@@ -29,7 +29,7 @@ export class CountriesComponent {
   countriesArray!: Country[];
   showCountries: Country[] = [];
   requestError?: string;
-  darkTheme$: Observable<boolean> = this._themeService.themeDark;
+  darkTheme$ = this._themeService.themeDark;
   suscription$!: Subscription;
   
   ngOnInit() {

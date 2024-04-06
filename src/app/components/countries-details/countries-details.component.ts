@@ -13,14 +13,13 @@ import { Subscription } from 'rxjs';
   styleUrl: './countries-details.component.scss',
 })
 export class CountriesDetailsComponent {
-
-  route = inject(Router)
+  route = inject(Router);
   _countriesService = inject(CountriesService);
   activateRout = inject(ActivatedRoute);
   showCountry!: CountryDetailsShow;
-  borders?:any[];
+  borders?: any[];
   suscriptionCountry$!: Subscription;
-  subscriptionBorder$!:Subscription;
+  subscriptionBorder$!: Subscription;
 
   ngOnInit() {
     this.suscriptionCountry$ = this.activateRout.params.subscribe((param) => {
@@ -29,7 +28,7 @@ export class CountriesDetailsComponent {
         .subscribe(([response]) => {
           this.showCountry = this.organizeData(response);
 
-          this.getBordesNames(this.showCountry.borders)
+          this.getBordesNames(this.showCountry.borders);
         });
     });
   }
@@ -43,30 +42,33 @@ export class CountriesDetailsComponent {
     return response;
   }
 
-  getBordesNames(borders: string[]){
+  getBordesNames(borders: string[]) {
     if (!borders) {
-      return
+      return;
     }
     this.borders = [];
     borders.forEach((border) => {
-      this.subscriptionBorder$ = this._countriesService.getbyCode(`alpha/${border}`).subscribe(([response]) => {
-        
-        this.borders?.push({name: response.name['common'], code: response.cca3}) 
-        
-      })
-    })
+      this.subscriptionBorder$ = this._countriesService
+        .getbyCode(`alpha/${border}`)
+        .subscribe(([response]) => {
+          this.borders?.push({
+            name: response.name['common'],
+            code: response.cca3,
+          });
+        });
+    });
   }
 
-  onCLickBack(){
-    this.route.navigate(['/countries'])
+  onCLickBack() {
+    this.route.navigate(['/countries']);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     if (this.suscriptionCountry$) {
-      this.suscriptionCountry$.unsubscribe()
+      this.suscriptionCountry$.unsubscribe();
     }
     if (this.subscriptionBorder$) {
-      this.subscriptionBorder$.unsubscribe()
+      this.subscriptionBorder$.unsubscribe();
     }
   }
 }
