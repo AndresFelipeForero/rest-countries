@@ -1,7 +1,8 @@
+import { catchError } from 'rxjs';
 import { Component, ElementRef, HostListener, ViewChild, inject } from '@angular/core';
 import { CountriesService } from '../../services/countries.service';
 import { Country } from '../../models/country.model';
-import { DecimalPipe, NgClass } from '@angular/common';
+import { DecimalPipe, NgClass, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SpinnerService } from '../../services/spinner.service';
@@ -10,7 +11,7 @@ import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-countries',
   standalone: true,
-  imports: [NgClass, RouterLink, DecimalPipe, FormsModule],
+  imports: [NgClass, RouterLink, DecimalPipe, FormsModule, NgIf],
   templateUrl: './countries.component.html',
   styleUrl: './countries.component.scss',
 })
@@ -27,6 +28,7 @@ export class CountriesComponent {
   showOptions: boolean = false;
   countriesArray!: Country[];
   showCountries!: Country[];
+  requestError?: string;
   
   ngOnInit() {
     this._countriesService
@@ -34,17 +36,8 @@ export class CountriesComponent {
     .subscribe((response) => {
       this.countriesArray = response
       this.showCountries = this.countriesArray
-    });
+    }, error => this.requestError = error);
   }
-  
-  ngAfterViewInit() {
-    this.cdref.detectChanges()
-  }
-
-  ngAfterContentChecked() {
-   
-    this.cdref.detectChanges();
- }
   
   toggleOptions(): void {
     this.showOptions = !this.showOptions;

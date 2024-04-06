@@ -193,14 +193,34 @@ input[type="text"]::placeholder {
   }
 }
 
+.not-matches-span {
+  text-align: center;
+  width: 100%;
+
+  span {
+    color: var(--DarkGrayLightModeInput);
+  }
+}
+
+.errorMessage {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+  color: var(--DarkGrayLightModeInput);
+}
+
 @media (min-width: 800px){
 
   .container {
-    padding-top: 48px;
+    padding: 48px 5.55% 0 5.55%;
     gap: 48px;
 
     .search-container {
       height: 58px;
+
+      .search-icon {
+        width: 25px;
+      }
     }
 
     .selected-option {
@@ -222,6 +242,9 @@ input[type="text"]::placeholder {
       margin-bottom: 72px;
       gap: 72px;
       
+      .card {
+        width: 266px;
+      }
       .card:hover {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }

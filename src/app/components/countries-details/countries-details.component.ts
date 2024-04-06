@@ -19,6 +19,9 @@ export class CountriesDetailsComponent {
   showCountry!: CountryDetailsShow;
   borders:any[] = []
 
+
+
+
   ngOnInit() {
     this.activateRout.params.subscribe((param) => {
       this._countriesService
@@ -51,8 +54,6 @@ export class CountriesDetailsComponent {
       })
     })
   }
-
-
 
   onCLickBack(){
     this.route.navigate(['/countries'])

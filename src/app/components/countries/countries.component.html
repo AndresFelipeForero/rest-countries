@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="!requestError" class="container">
 
     <!-- search -->
 
@@ -28,7 +28,7 @@
 
     <!-- cards -->
 
-    <div class="cards-container">
+    <div *ngIf="showCountries.length > 0" class="cards-container">
         @for (country of showCountries; track $index) {
         @defer (on viewport) {
             <div class="card" [routerLink]="['/countries', country.cca3]">
@@ -65,4 +65,12 @@
         }
     </div>
 
+    <div *ngIf="showCountries.length === 0" class="not-matches-span">
+        <span>Matches not found</span>
+    </div> 
+
+</div>
+
+<div *ngIf="requestError" class="errorMessage">
+    <span>{{requestError}}</span>
 </div>
