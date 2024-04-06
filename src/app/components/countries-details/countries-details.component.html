@@ -1,7 +1,12 @@
 <div class="container">
 
     <button (click)="onCLickBack()" class="btn__back">
-        <img src="../../../assets/images/icons8-flecha-izquierda-larga-50.png" alt="Back">
+        @if (darkTheme$ | async) {
+            <img src="../../../assets/images/icons8-flecha-izquierda-larga-50-white.png" alt="Back">
+        }@else {
+            <img src="../../../assets/images/icons8-flecha-izquierda-larga-50.png" alt="Back">
+
+        }
         <span>Back</span>
     </button>
 

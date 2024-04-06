@@ -2,24 +2,27 @@ import { Component, inject } from '@angular/core';
 import { CountriesService } from '../../services/countries.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CountryDetailsShow } from '../../models/country.model';
-import { DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-countries-details',
   standalone: true,
-  imports: [NgFor, NgIf, DecimalPipe, RouterLink],
+  imports: [NgFor, NgIf, DecimalPipe, RouterLink, AsyncPipe],
   templateUrl: './countries-details.component.html',
   styleUrl: './countries-details.component.scss',
 })
 export class CountriesDetailsComponent {
   route = inject(Router);
+  themeService = inject(ThemeService);
   _countriesService = inject(CountriesService);
   activateRout = inject(ActivatedRoute);
   showCountry!: CountryDetailsShow;
   borders?: any[];
   suscriptionCountry$!: Subscription;
   subscriptionBorder$!: Subscription;
+  darkTheme$ = this.themeService.themeDark
 
   ngOnInit() {
     this.suscriptionCountry$ = this.activateRout.params.subscribe((param) => {
